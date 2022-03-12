@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+
+
+    <record id="pay_slip_report" model="ir.ui.view">
+        <field name="name">PaySlip Report</field>
+        <field name="model">pay.slip.report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="4" colspan="2">
+                        <field name="date_from" />
+                        <field name="date_to" />
+                    </group>
+                </sheet>
+                
+                <footer>
+                    <button name="get_data" string="Show" type="object" default_focus="1" class="oe_highlight" />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="pay_slip_report_action" model="ir.actions.act_window">
+        <field name="name">PaySlip Report</field>
+        <field name="res_model">pay.slip.report.wizard</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="pay_slip_report"/>
+        <field name="target">new</field>
+    </record>
+
+    
+
+
+
+    <menuitem id="menu_report_payslip"
+        name="Payslip"
+        action="pay_slip_report_action"
+        parent="hr_payroll.menu_hr_payroll_report"/>
+
+
+   
+    
+    <record id="pay_slip_report_tree" model="ir.ui.view">
+        <field name="name">pay.slip.report</field>
+        <field name="model">pay.slip.report</field>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <tree string="Tree" edit="false" create="false">
+                <field name="employee" />
+                <field name="basic"/>
+                <field name="allowance"/>
+                <field name="gross"/>
+                <field name="deduction"/>
+                <field name="net"/>
+            </tree>
+        </field>
+    </record>
+    
+</odoo>
